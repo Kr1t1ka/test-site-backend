@@ -1,12 +1,12 @@
 from rest_framework import serializers
 
-from .models import Question, Answer, User, Steps
+from .models import Question, Answer, User, Steps, Faculty
 
 
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
-        fields = '__all__'
+        fields = ['text', 'id']
 
 
 class QuestionSerializer(serializers.ModelSerializer):
@@ -31,3 +31,11 @@ class StepsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Steps
         fields = '__all__'
+
+
+class FacultySerializer(serializers.ModelSerializer):
+    # user_link = serializers.ReadOnlyField()
+
+    class Meta:
+        model = Faculty
+        fields = ['name', 'description', 'link_pic']

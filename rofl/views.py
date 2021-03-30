@@ -103,12 +103,3 @@ class UserResView(viewsets.ViewSet):
 
         return Response(FacultySerializer(res).data)
 
-    # def list(self, request):
-    #     faculty_id = self.request.query_params.get('faculty_id')
-    #     news = News.objects
-    #     if faculty_id:
-    #         faculty_id = self.split_args(faculty_id)
-    #         news = news.filter(news_f__in=faculty_id)
-    #
-    #     serializer = self.serializer_class(news.all(), many=True)
-    #     return Response(serializer.data)

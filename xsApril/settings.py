@@ -26,7 +26,7 @@ SECRET_KEY = '383$_8!@z@%dzf85-=@rhupt2*i2z=j&q5@ona_wnu8fgl9-(w'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*', ]
 
 # Application definition
 
@@ -138,12 +138,10 @@ REST_FRAMEWORK = {
 }
 
 JWT_AUTH = {
-
     'JWT_VERIFY': True,
     'JWT_VERIFY_EXPIRATION': True,
     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=3000),
     'JWT_AUTH_HEADER_PREFIX': 'Bearer',
-
 }
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)

@@ -32,11 +32,14 @@ class UserViewSet(viewsets.ModelViewSet):
 class StepsViewSet(viewsets.ModelViewSet):
     serializer_class = StepsSerializer
     queryset = Steps.objects.all()
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    # permission_classes = [IsAuthenticatedOrReadOnly]
 
     def create(self, request):
         data = request.data
-        token = jwt.decode(data['user'], "ikss", algorithms=["HS256"])
+        try:
+            token = jwt.decode(data['user'], "ikss", algorithms=["HS256"])
+        except:
+            return Response(403, "Wrong token")
         data['user'] = token['id']
         serializer = self.get_serializer(data=data)
         if serializer.is_valid():

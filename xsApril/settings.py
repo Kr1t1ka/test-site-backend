@@ -24,7 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '383$_8!@z@%dzf85-=@rhupt2*i2z=j&q5@ona_wnu8fgl9-(w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+BUILD = os.getenv("BUILD")
+if BUILD in ["local", "dev"]:
+    DEBUG = True
+else:
+    DEBUG = False
 
 ALLOWED_HOSTS = ['*', ]
 
@@ -40,6 +44,7 @@ INSTALLED_APPS = [
     'rofl',
     'rest_framework',
     'django_filters',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -50,6 +55,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = 'xsApril.urls'
@@ -82,6 +89,8 @@ WSGI_APPLICATION = 'xsApril.wsgi.application'
 #         'NAME': BASE_DIR / 'db/db.sqlite3',
 #     }
 # }
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 DATABASES = {
     'default': {

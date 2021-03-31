@@ -1,8 +1,13 @@
+import jwt
+import os
 from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.decorators import action
-import jwt
+from django.views.generic import DetailView
+from django.http.response import FileResponse, HttpResponse
+from xsApril.settings import BASE_DIR
+
 
 from .serializers import QuestionSerializer, AnswerSerializer, UserSerializer, StepsSerializer, FacultySerializer
 from .models import Question, Answer, User, Steps, Faculty
@@ -106,3 +111,17 @@ class UserResView(viewsets.ViewSet):
 
         return Response(FacultySerializer(res).data)
 
+
+class MediaDownloadView(DetailView):
+
+    def get(self, request, *args, **kwargs):
+        slug = self.kwargs.get(self.slug_field, None)
+        # with open('static/it.jpg') as img:
+        # response = FileResponse(img, content_type="image/jpeg")
+
+        test_file = open('static/'+slug, 'rb')
+        response = HttpResponse(content=test_file)
+        response['Content-Type'] = 'image/jpeg'
+        # response['Content-Disposition'] = 'attachment; filename="%s.pdf"' \
+        #                                   % 'whatever'
+        return response

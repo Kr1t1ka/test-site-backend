@@ -83,19 +83,12 @@ WSGI_APPLICATION = 'xsApril.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db/db.sqlite3',
-#     }
-# }
-
 CORS_ALLOW_ALL_ORIGINS = True
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv("DB_NAME") or 'bfltest',
+        'NAME': os.getenv("DB_NAME") or 'bflapi',
         'USER': os.getenv("DB_USER") or 'myuser',
         'PASSWORD': os.getenv("DB_PASSWORD") or '123',
         'HOST': os.getenv("DB_HOST") or 'localhost',

@@ -7,7 +7,7 @@ class Faculty(models.Model):
     name = models.CharField(max_length=30, verbose_name='название факультета', null=False)
     description = models.CharField(max_length=1500, verbose_name='Текст для репоста', null=False,
                                    default=f'Ваш факультет {name}')
-    link_pic = models.ImageField(default='')
+    link_pic = models.CharField(max_length=30, verbose_name='название файла', null=False)
 
     def __str__(self):
         return self.name

@@ -36,6 +36,7 @@ class StepsViewSet(viewsets.ModelViewSet):
 
     def create(self, request):
         data = request.data
+        header = request.header()
         token = jwt.decode(data['user'], "ikss", algorithms=["HS256"])
         data['user'] = token['id']
         serializer = self.get_serializer(data=data)

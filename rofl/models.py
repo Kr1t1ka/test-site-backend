@@ -5,7 +5,9 @@ from django.db import models
 
 class Faculty(models.Model):
     name = models.CharField(max_length=30, verbose_name='название факультета', null=False)
-    description = models.CharField(max_length=1500, verbose_name='Текст для репоста', null=False,
+    description = models.CharField(max_length=1500, verbose_name='Текст итога', null=False,
+                                   default=f'Ваш факультет {name}')
+    text_repost = models.CharField(max_length=1500, verbose_name='Текст для репоста', null=False,
                                    default=f'Ваш факультет {name}')
     link_pic = models.CharField(max_length=30, verbose_name='название файла', null=False)
 

@@ -36,7 +36,10 @@ class StepsViewSet(viewsets.ModelViewSet):
 
     def create(self, request):
         data = request.data
-        token = jwt.decode(data['user'], "ikss", algorithms=["HS256"])
+        try:
+            token = jwt.decode(data['user'], "ikss", algorithms=["HS256"])
+        except:
+            return Response(403, "Wrong token")
         data['user'] = token['id']
         serializer = self.get_serializer(data=data)
         if serializer.is_valid():

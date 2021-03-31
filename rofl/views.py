@@ -37,7 +37,6 @@ class UserViewSet(viewsets.ModelViewSet):
 class StepsViewSet(viewsets.ModelViewSet):
     serializer_class = StepsSerializer
     queryset = Steps.objects.all()
-    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def create(self, request):
         data = request.data

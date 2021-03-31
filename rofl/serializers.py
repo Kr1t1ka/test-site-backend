@@ -38,4 +38,4 @@ class FacultySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Faculty
-        fields = ['name', 'description', 'link_pic']
+        fields = '__all__'
